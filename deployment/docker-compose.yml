@@ -1,0 +1,43 @@
+services:
+  backend:
+    build:
+      context: ../backend
+    container_name: contest-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist autosave data
+      - ../contests:/app/contests
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ../frontend
+    container_name: contest-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: contest-tunnel
+    command: tunnel --url http://frontend:80
+    depends_on:
+      - frontend
+    restart: unless-stopped
+
+  access-printer:
+    image: docker:cli
+    container_name: contest-access-printer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./show_access_info.sh:/show_access_info.sh
+    command: ["/bin/sh", "-c", "chmod +x /show_access_info.sh && /show_access_info.sh"]
+    restart: "no"
+    depends_on:
+      - backend
+      - tunnel

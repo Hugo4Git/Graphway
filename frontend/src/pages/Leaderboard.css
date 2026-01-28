@@ -1,0 +1,331 @@
+.leaderboard-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+.leaderboard-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.leaderboard-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+    color: #fff;
+    letter-spacing: -0.05em;
+}
+
+.leaderboard-subtitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: #94a3b8;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.live-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #22c55e;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Podium Styles */
+.podium-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    height: 300px;
+    /* Fixed height for consistent alignment */
+}
+
+.podium-place {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.podium-place:hover {
+    transform: translateY(-5px);
+}
+
+.podium-rank-1 {
+    order: 2;
+    z-index: 10;
+}
+
+.podium-rank-2 {
+    order: 1;
+}
+
+.podium-rank-3 {
+    order: 3;
+}
+
+.podium-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #27272a, #18181b);
+    border: 4px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.rank-1 .podium-avatar {
+    width: 120px;
+    height: 120px;
+    border-color: #FFD700;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+    font-size: 3rem;
+}
+
+.rank-2 .podium-avatar {
+    border-color: #C0C0C0;
+    box-shadow: 0 0 20px rgba(192, 192, 192, 0.2);
+}
+
+.rank-3 .podium-avatar {
+    border-color: #CD7F32;
+    box-shadow: 0 0 20px rgba(205, 127, 50, 0.2);
+}
+
+.crown-icon {
+    position: absolute;
+    top: -40px;
+    color: #FFD700;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.podium-block {
+    width: 140px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.rank-1 .podium-block {
+    height: 180px;
+    background: linear-gradient(to bottom, rgba(255, 215, 0, 0.1), rgba(0, 0, 0, 0));
+    border-top-color: rgba(255, 215, 0, 0.3);
+}
+
+.rank-2 .podium-block {
+    height: 140px;
+    background: linear-gradient(to bottom, rgba(192, 192, 192, 0.1), rgba(0, 0, 0, 0));
+    border-top-color: rgba(192, 192, 192, 0.3);
+}
+
+.rank-3 .podium-block {
+    height: 110px;
+    background: linear-gradient(to bottom, rgba(205, 127, 50, 0.1), rgba(0, 0, 0, 0));
+    border-top-color: rgba(205, 127, 50, 0.3);
+}
+
+.podium-team-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.podium-stats {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.stat-value {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* List Styles */
+.leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    perspective: 1000px;
+}
+
+.list-header {
+    display: grid;
+    grid-template-columns: 80px 1fr 100px 150px;
+    padding: 0 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #64748b;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.list-item {
+    display: grid;
+    grid-template-columns: 80px 1fr 100px 150px;
+    align-items: center;
+    background: rgba(39, 39, 42, 0.4);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    animation: slideIn 0.5s ease backwards;
+}
+
+.list-item:hover {
+    background: rgba(39, 39, 42, 0.7);
+    transform: scale(1.01) translateX(5px);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.rank-cell {
+    font-family: 'Monaco', 'Consolas', monospace;
+    color: #64748b;
+    font-weight: bold;
+}
+
+.team-cell {
+    font-weight: 600;
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.solved-cell {
+    text-align: center;
+    font-weight: 700;
+    color: #22c55e;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.score-cell {
+    text-align: right;
+    font-family: 'Monaco', 'Consolas', monospace;
+    color: #3b82f6;
+    font-weight: 700;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 4rem;
+    color: #64748b;
+    background: rgba(39, 39, 42, 0.3);
+    border-radius: 16px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .podium-container {
+        gap: 0.5rem;
+    }
+
+    .rank-1 .podium-avatar {
+        width: 100px;
+        height: 100px;
+        font-size: 2.5rem;
+    }
+
+    .podium-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .podium-block {
+        width: 100%;
+        min-width: 90px;
+    }
+
+    .list-header,
+    .list-item {
+        grid-template-columns: 50px 1fr 80px;
+        gap: 0.5rem;
+    }
+
+    .score-cell,
+    .list-header>*:last-child {
+        display: none;
+        /* Hide Height Reached on small screens if too cramped, or combine */
+    }
+}
