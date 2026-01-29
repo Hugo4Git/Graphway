@@ -1,15 +1,33 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { apiClient } from '../api/client';
 import { Trophy, Users, ShieldCheck, ArrowRight } from 'lucide-react';
 
 const Home: React.FC = () => {
     const navigate = useNavigate();
     const [token, setToken] = useState('');
 
-    const handleTeamEnter = (e: React.FormEvent) => {
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleTeamEnter = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (token.trim()) {
+        if (!token.trim()) return;
+
+        setLoading(true);
+        setError('');
+
+        try {
+            await apiClient.get(`/team/me/${token.trim()}`);
             navigate(`/t/${token.trim()}`);
+        } catch (err: any) { // axious error
+            if (err.response && err.response.status === 404) {
+                setError('Invalid team token');
+            } else {
+                setError('Something went wrong. Please try again.');
+            }
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -47,21 +65,35 @@ const Home: React.FC = () => {
                                 type="text"
                                 placeholder="Enter team token..."
                                 value={token}
-                                onChange={(e) => setToken(e.target.value)}
+                                onChange={(e) => {
+                                    setToken(e.target.value);
+                                    if (error) setError('');
+                                }}
                                 autoCapitalize="off"
                                 autoComplete="off"
                                 autoCorrect="off"
                                 spellCheck="false"
-                                className="flex-1 bg-background border border-border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                                className={`flex-1 bg-background border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors ${error ? 'border-red-500 focus:ring-red-500/50' : 'border-border'
+                                    }`}
+                                disabled={loading}
                             />
                             <button
                                 type="submit"
-                                disabled={!token.trim()}
-                                className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                disabled={!token.trim() || loading}
+                                className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors min-w-[80px] flex justify-center items-center"
                             >
-                                Enter
+                                {loading ? (
+                                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                ) : (
+                                    'Enter'
+                                )}
                             </button>
                         </form>
+                        {error && (
+                            <p className="text-xs text-red-500 animate-in fade-in slide-in-from-top-1">
+                                {error}
+                            </p>
+                        )}
                     </div>
 
                     {/* Leaderboard Option */}

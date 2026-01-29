@@ -21,3 +21,6 @@ Thumbs.db
 
 # Private files
 private/
+
+# Created contests
+contests/

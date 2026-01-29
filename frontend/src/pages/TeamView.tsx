@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ReactFlow, Background, useNodesState, useEdgesState, type Edge, type ReactFlowInstance, MarkerType, type Node } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { apiClient } from '../api/client';
@@ -12,6 +12,7 @@ const edgeTypes = { floating: FloatingEdge };
 
 export default function TeamView() {
     const { token } = useParams();
+    const navigate = useNavigate();
     const [data, setData] = useState<TeamViewResponse | null>(null);
     const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
@@ -126,13 +127,12 @@ export default function TeamView() {
 
         } catch (e: any) {
             console.error(e);
-            // Optional: alert user or show error state
             if (e.response?.status === 404) {
-                // Handle invalid token
+                navigate('/');
             }
         }
         setLoading(false);
-    }, [token, rfInstance, setNodes, setEdges]);
+    }, [token, rfInstance, setNodes, setEdges, navigate]);
 
     useEffect(() => {
         fetchData();
