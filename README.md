@@ -1,5 +1,7 @@
 # Graphway
 
+Graphway is a web-based platform designed for organizing and running algorithmic contests using task-graphs. It enables administrators to create interactive problem graphs where nodes represent problems that participating teams must solve to unlock new paths. The system facilitates real-time competition management, automated scoring, and live progress tracking to provide an engaging experience for both organizers and participants.
+
 ## 🚀 Deployment / How to Run
 
 The easiest way to run the platform is using Docker Compose. This ensures all dependencies are set up correctly, including a public access tunnel.
