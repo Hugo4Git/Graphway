@@ -173,6 +173,25 @@ export default function TeamView() {
                         Solved: <span className="text-green-600 font-bold">{data?.solved_count || 0}</span>
                         <span className="mx-2 text-border">|</span>
                         Score: <span className="text-blue-600 font-bold">{data?.score || 0}</span>
+                        {data?.contest && (() => {
+                            const now = Math.floor(Date.now() / 1000);
+                            const startTime = data.contest.start_time;
+                            const endTime = startTime + data.contest.duration;
+
+                            if (now >= startTime && now <= endTime) {
+                                const diff = endTime - now;
+                                const hours = Math.floor(diff / 3600);
+                                const minutes = Math.floor((diff % 3600) / 60);
+                                const timeStr = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+                                return (
+                                    <>
+                                        <span className="mx-2 text-border">|</span>
+                                        Time Left: <span className="text-foreground font-bold font-mono">{timeStr}</span>
+                                    </>
+                                )
+                            }
+                            return null;
+                        })()}
                     </p>
                 </div>
                 <div className="flex items-center gap-6">
