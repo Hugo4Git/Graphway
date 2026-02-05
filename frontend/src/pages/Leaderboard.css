@@ -2,7 +2,7 @@
     width: 80%;
     margin: 0 auto;
     padding: 2rem;
-    color: #fff;
+    color: var(--color-foreground);
     font-family: 'Inter', sans-serif;
 }
 
@@ -16,7 +16,7 @@
     font-size: 3rem;
     font-weight: 800;
     margin: 0;
-    color: #fff;
+    color: var(--color-foreground);
     letter-spacing: -0.05em;
 }
 
@@ -25,7 +25,7 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    color: #94a3b8;
+    color: var(--color-muted-foreground);
     margin-top: 0.5rem;
     font-size: 0.9rem;
     text-transform: uppercase;
@@ -66,7 +66,6 @@
     gap: 2rem;
     margin-bottom: 4rem;
     height: 300px;
-    /* Fixed height for consistent alignment */
 }
 
 .podium-place {
@@ -98,7 +97,7 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #27272a, #18181b);
+    background: var(--color-card);
     border: 4px solid;
     display: flex;
     justify-content: center;
@@ -106,8 +105,9 @@
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 1rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     position: relative;
+    color: var(--color-foreground);
 }
 
 .rank-1 .podium-avatar {
@@ -150,9 +150,9 @@
 
 .podium-block {
     width: 140px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 12px 12px 0 0;
     display: flex;
     flex-direction: column;
@@ -164,19 +164,19 @@
 
 .rank-1 .podium-block {
     height: 180px;
-    background: linear-gradient(to bottom, rgba(255, 215, 0, 0.1), rgba(0, 0, 0, 0));
+    background: linear-gradient(to bottom, rgba(255, 215, 0, 0.1), rgba(255, 255, 255, 0));
     border-top-color: rgba(255, 215, 0, 0.3);
 }
 
 .rank-2 .podium-block {
     height: 140px;
-    background: linear-gradient(to bottom, rgba(192, 192, 192, 0.1), rgba(0, 0, 0, 0));
+    background: linear-gradient(to bottom, rgba(192, 192, 192, 0.1), rgba(255, 255, 255, 0));
     border-top-color: rgba(192, 192, 192, 0.3);
 }
 
 .rank-3 .podium-block {
     height: 110px;
-    background: linear-gradient(to bottom, rgba(205, 127, 50, 0.1), rgba(0, 0, 0, 0));
+    background: linear-gradient(to bottom, rgba(205, 127, 50, 0.1), rgba(255, 255, 255, 0));
     border-top-color: rgba(205, 127, 50, 0.3);
 }
 
@@ -184,7 +184,7 @@
     font-weight: 700;
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    color: var(--color-foreground);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -195,11 +195,11 @@
     display: flex;
     gap: 0.5rem;
     font-size: 0.85rem;
-    color: #94a3b8;
+    color: var(--color-muted-foreground);
 }
 
 .stat-value {
-    color: #fff;
+    color: var(--color-foreground);
     font-weight: 600;
 }
 
@@ -216,7 +216,7 @@
     grid-template-columns: 80px 1fr 100px 150px;
     padding: 0 1.5rem;
     margin-bottom: 0.5rem;
-    color: #64748b;
+    color: var(--color-muted-foreground);
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -227,20 +227,20 @@
     display: grid;
     grid-template-columns: 80px 1fr 100px 150px;
     align-items: center;
-    background: rgba(39, 39, 42, 0.4);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
     padding: 1rem 1.5rem;
     border-radius: 12px;
     transition: all 0.2s ease;
     animation: slideIn 0.5s ease backwards;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
 .list-item:hover {
-    background: rgba(39, 39, 42, 0.7);
+    background: var(--color-accent);
     transform: scale(1.01) translateX(5px);
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 @keyframes slideIn {
@@ -257,13 +257,13 @@
 
 .rank-cell {
     font-family: 'Monaco', 'Consolas', monospace;
-    color: #64748b;
+    color: var(--color-muted-foreground);
     font-weight: bold;
 }
 
 .team-cell {
     font-weight: 600;
-    color: #f8fafc;
+    color: var(--color-foreground);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -280,7 +280,7 @@
 .score-cell {
     text-align: right;
     font-family: 'Monaco', 'Consolas', monospace;
-    color: #3b82f6;
+    color: var(--color-primary);
     font-weight: 700;
 }
 
@@ -288,10 +288,10 @@
 .empty-state {
     text-align: center;
     padding: 4rem;
-    color: #64748b;
-    background: rgba(39, 39, 42, 0.3);
+    color: var(--color-muted-foreground);
+    background: var(--color-muted);
     border-radius: 16px;
-    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border: 1px dashed var(--color-border);
 }
 
 /* Responsive adjustments */

@@ -112,9 +112,9 @@ export default function TeamView() {
                             type: MarkerType.ArrowClosed,
                             width: 20,
                             height: 20,
-                            color: n.state === 'solved' ? '#22c55e' : '#94a3b8',
+                            color: n.state === 'solved' ? '#22c55e' : '#64748b',
                         },
-                        style: { stroke: n.state === 'solved' ? '#22c55e' : '#94a3b8', strokeWidth: 2 }
+                        style: { stroke: n.state === 'solved' ? '#22c55e' : '#64748b', strokeWidth: 2 }
                     });
                 });
             });
@@ -159,26 +159,26 @@ export default function TeamView() {
 
     return (
         <div className="w-full h-screen flex flex-col bg-transparent">
-            <header className="h-16 px-6 border-b border-white/10 bg-black/40 backdrop-blur-md flex items-center justify-between shrink-0 z-20">
+            <header className="h-16 px-6 border-b border-border bg-background/80 backdrop-blur-md flex items-center justify-between shrink-0 z-20">
                 <div>
-                    <h1 className="text-xl font-bold text-white flex items-center gap-3">
+                    <h1 className="text-xl font-bold text-foreground flex items-center gap-3">
                         {data?.team_name || "Team View"}
                         {data?.cf_handles && (
-                            <span className="text-sm font-normal text-muted-foreground bg-white/5 px-2 py-0.5 rounded border border-white/10">
+                            <span className="text-sm font-normal text-muted-foreground bg-muted px-2 py-0.5 rounded border border-border">
                                 {data.cf_handles.join(", ")}
                             </span>
                         )}
                     </h1>
                     <p className="text-sm text-muted-foreground">
-                        Solved: <span className="text-emerald-400 font-bold">{data?.solved_count || 0}</span>
-                        <span className="mx-2 text-white/20">|</span>
-                        Score: <span className="text-blue-400 font-bold">{data?.score || 0}</span>
+                        Solved: <span className="text-green-600 font-bold">{data?.solved_count || 0}</span>
+                        <span className="mx-2 text-border">|</span>
+                        Score: <span className="text-blue-600 font-bold">{data?.score || 0}</span>
                     </p>
                 </div>
                 <div className="flex items-center gap-6">
                     <button
                         onClick={() => rfInstance?.fitView({ padding: 0.2 })}
-                        className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-white/5 hover:bg-white/10 border border-white/10 text-sm text-white transition-all active:scale-95"
+                        className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-muted hover:bg-muted/80 border border-border text-sm text-foreground transition-all active:scale-95"
                         title="Center View"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="3" /></svg>
@@ -187,7 +187,7 @@ export default function TeamView() {
                     <div className="text-right">
                         <div className="text-xs text-muted-foreground">Team Link</div>
                         <code
-                            className="bg-black/30 px-2 py-1 rounded text-xs select-all cursor-pointer text-white hover:bg-white/10"
+                            className="bg-muted px-2 py-1 rounded text-xs select-all cursor-pointer text-foreground hover:bg-muted/80"
                             onClick={() => navigator.clipboard.writeText(`${window.location.origin}/t/${token}`)}
                             title="Click to copy"
                         >
@@ -203,7 +203,7 @@ export default function TeamView() {
                     if (data && data.contest) {
                         if (data.contest.state === 'EDITING') {
                             return (
-                                <div className="absolute inset-0 flex flex-col items-center justify-center text-white bg-black/80 backdrop-blur-sm z-50">
+                                <div className="absolute inset-0 flex flex-col items-center justify-center text-foreground bg-background/90 backdrop-blur-sm z-50">
                                     <h2 className="text-4xl font-bold mb-4">Contest Preparation</h2>
                                     <p className="text-xl text-muted-foreground">The contest is currently being set up.</p>
                                     <p className="text-sm text-muted-foreground mt-4">Please wait for the organizers to start the contest.</p>
@@ -223,10 +223,10 @@ export default function TeamView() {
                             const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
                             return (
-                                <div className="absolute inset-0 flex flex-col items-center justify-center text-white bg-black/80 backdrop-blur-sm z-50">
+                                <div className="absolute inset-0 flex flex-col items-center justify-center text-foreground bg-background/90 backdrop-blur-sm z-50">
                                     <h2 className="text-4xl font-bold mb-8">Contest Has Not Started Yet</h2>
                                     <div className="text-xl text-muted-foreground mb-4">Starting in</div>
-                                    <div className="text-8xl font-mono font-bold text-blue-400 tracking-wider">
+                                    <div className="text-8xl font-mono font-bold text-blue-600 tracking-wider">
                                         {timeString}
                                     </div>
                                     <div className="mt-12 text-muted-foreground">
@@ -238,12 +238,12 @@ export default function TeamView() {
 
                         if (now > endTime) {
                             return (
-                                <div className="absolute inset-0 flex flex-col items-center justify-center text-white bg-black/80 backdrop-blur-sm z-50">
+                                <div className="absolute inset-0 flex flex-col items-center justify-center text-foreground bg-background/90 backdrop-blur-sm z-50">
                                     <h2 className="text-4xl font-bold mb-8">Contest Has Ended</h2>
                                     <p className="text-xl text-muted-foreground mb-8">Thank you for participating!</p>
 
                                     <div className="flex gap-4">
-                                        <Link to="/leaderboard" className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg font-bold transition-colors">
+                                        <Link to="/leaderboard" className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold transition-colors">
                                             View Final Leaderboard
                                         </Link>
                                     </div>
@@ -271,7 +271,7 @@ export default function TeamView() {
                                     proOptions={{ hideAttribution: true }}
                                     attributionPosition="bottom-right"
                                 >
-                                    <Background color="#27272a" gap={16} />
+                                    <Background color="#cbd5e1" gap={16} />
                                 </ReactFlow>
                             )}
                             {nodes.length === 0 && !loading && (

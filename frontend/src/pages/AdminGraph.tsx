@@ -115,9 +115,9 @@ export default function AdminGraph() {
                         type: MarkerType.ArrowClosed,
                         width: 20,
                         height: 20,
-                        color: '#94a3b8',
+                        color: '#64748b',
                     },
-                    style: { stroke: '#94a3b8', strokeWidth: 2 }
+                    style: { stroke: '#64748b', strokeWidth: 2 }
                 });
             });
         });
@@ -290,14 +290,14 @@ export default function AdminGraph() {
     return (
         <div id="admin-graph-wrapper" className="flex-1 w-full h-full relative">
             {teamId && (
-                <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 bg-amber-500/20 text-amber-500 border border-amber-500 px-4 py-2 rounded-full backdrop-blur font-bold flex items-center gap-2">
+                <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 bg-amber-100 text-amber-700 border border-amber-500 px-4 py-2 rounded-full backdrop-blur font-bold flex items-center gap-2 shadow-sm">
                     <span>Modify Team: {teamState?.name}</span>
                     <button onClick={() => window.history.back()} className="text-sm underline ml-2">Exit</button>
                 </div>
             )}
             {!teamId && !isEditing && (
                 <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-1">
-                    <div className="bg-blue-500/20 text-blue-300 border border-blue-500/50 px-6 py-2 rounded-full backdrop-blur font-bold flex items-center gap-2 shadow-lg">
+                    <div className="bg-blue-100 text-blue-700 border border-blue-300 px-6 py-2 rounded-full backdrop-blur font-bold flex items-center gap-2 shadow-lg">
                         <span>READ ONLY MODE ({contestConfig?.state || "LOADING..."})</span>
                     </div>
                 </div>
@@ -318,9 +318,9 @@ export default function AdminGraph() {
                 fitView
                 proOptions={{ hideAttribution: true }}
             >
-                <Background color="#334155" gap={16} />
+                <Background color="#cbd5e1" gap={16} />
                 <Controls />
-                <MiniMap style={{ background: '#1e293b' }} nodeColor="#3b82f6" />
+                <MiniMap style={{ background: '#f8fafc' }} nodeColor="#3b82f6" />
 
                 <Panel position="top-right" className="flex flex-col gap-2 items-end">
 
@@ -381,7 +381,7 @@ export default function AdminGraph() {
                                 />
                             ) : (
                                 <div className="space-y-4">
-                                    <div className="text-muted-foreground text-sm p-2 bg-slate-900/40 rounded border border-border">
+                                    <div className="text-muted-foreground text-sm p-2 bg-muted rounded border border-border">
                                         Node details are read-only in this phase.
                                     </div>
                                     {(nodes.find(n => n.id === selectedNode)?.data as any)?.pid && (
@@ -561,7 +561,7 @@ function NodeEditor({ nodeId, currentPosition }: { nodeId: string, currentPositi
                 </div>
             </div>
 
-            <div className="space-y-2 border border-border/50 p-3 rounded-md bg-slate-900/20">
+            <div className="space-y-2 border border-border/50 p-3 rounded-md bg-muted/30">
                 <label className="block text-xs font-mono text-muted-foreground font-bold">Pick Random Problem</label>
                 <div className="grid grid-cols-2 gap-2">
                     <div>

@@ -129,7 +129,7 @@ export default function AdminTeams() {
                             <button
                                 type="button"
                                 onClick={resetForm}
-                                className="px-6 py-2 rounded hover:bg-white/10 transition-colors"
+                                className="px-6 py-2 rounded hover:bg-muted transition-colors"
                             >
                                 Cancel
                             </button>
@@ -157,7 +157,7 @@ export default function AdminTeams() {
                                 <div className="flex items-center gap-2">
                                     <span>Link:</span>
                                     <code
-                                        className="font-mono bg-white/10 px-2 py-0.5 rounded text-xs select-all cursor-pointer hover:bg-white/20"
+                                        className="font-mono bg-muted px-2 py-0.5 rounded text-xs select-all cursor-pointer hover:bg-muted/80"
                                         onClick={() => navigator.clipboard.writeText(`${window.location.origin}/t/${team.access_code}`)}
                                         title="Click to copy"
                                     >
@@ -172,13 +172,13 @@ export default function AdminTeams() {
                         <div className="flex gap-2">
                             <a
                                 href={`/admin/graph?teamId=${team.id}`}
-                                className="px-3 py-1 bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 rounded text-sm font-medium transition-colors flex items-center"
+                                className="px-3 py-1 bg-blue-100/50 hover:bg-blue-200/50 text-blue-600 rounded text-sm font-medium transition-colors flex items-center"
                             >
                                 Graph
                             </a>
                             <button
                                 onClick={() => handleEditClick(team)}
-                                className="px-3 py-1 bg-white/5 hover:bg-white/10 rounded text-sm font-medium transition-colors"
+                                className="px-3 py-1 bg-muted hover:bg-muted/80 rounded text-sm font-medium transition-colors"
                             >
                                 Edit
                             </button>

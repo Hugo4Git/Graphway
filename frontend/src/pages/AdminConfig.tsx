@@ -192,7 +192,7 @@ export default function AdminConfig() {
 
                     <div className="space-y-4 flex flex-col justify-between h-full pb-2">
                         <div className="space-y-4">
-                            <button onClick={handleExport} className="w-full flex items-center justify-center gap-2 bg-slate-700 text-white px-4 py-4 rounded-md shadow hover:bg-slate-600 transition-colors">
+                            <button onClick={handleExport} className="w-full flex items-center justify-center gap-2 bg-muted text-foreground px-4 py-4 rounded-md shadow hover:bg-muted/80 transition-colors border border-border">
                                 <Download size={20} /> Export Contest Data (JSON)
                             </button>
 
@@ -204,7 +204,7 @@ export default function AdminConfig() {
                                     accept=".json"
                                     onChange={handleFileChange}
                                 />
-                                <button onClick={handleImportClick} className="w-full flex items-center justify-center gap-2 bg-slate-700 text-white px-4 py-4 rounded-md shadow hover:bg-slate-600 transition-colors">
+                                <button onClick={handleImportClick} className="w-full flex items-center justify-center gap-2 bg-muted text-foreground px-4 py-4 rounded-md shadow hover:bg-muted/80 transition-colors border border-border">
                                     <Upload size={20} /> Import Contest Data (JSON)
                                 </button>
                             </div>
@@ -228,20 +228,20 @@ export default function AdminConfig() {
                     <button
                         onClick={() => handleStateChange("EDITING")}
                         disabled={contestState === "EDITING"}
-                        className={`flex-1 px-4 py-3 rounded font-bold transition-colors ${contestState === "EDITING" ? "bg-green-500/20 text-green-500 border border-green-500" : "bg-slate-700 hover:bg-slate-600 text-white"}`}
+                        className={`flex-1 px-4 py-3 rounded font-bold transition-colors ${contestState === "EDITING" ? "bg-green-100/50 text-green-700 border border-green-500" : "bg-muted hover:bg-muted/80 text-foreground border border-border"}`}
                     >
                         EDITING MODE
                     </button>
                     <button
                         onClick={() => handleStateChange("RUNNING")}
                         disabled={contestState === "RUNNING"}
-                        className={`flex-1 px-4 py-3 rounded font-bold transition-colors ${contestState === "RUNNING" || contestState === "FINISHED" ? "bg-green-500/20 text-green-500 border border-green-500" : "bg-slate-700 hover:bg-slate-600 text-white"}`}
+                        className={`flex-1 px-4 py-3 rounded font-bold transition-colors ${contestState === "RUNNING" || contestState === "FINISHED" ? "bg-green-100/50 text-green-700 border border-green-500" : "bg-muted hover:bg-muted/80 text-foreground border border-border"}`}
                     >
                         RUNNING MODE
                     </button>
                 </div>
                 <p className="text-sm text-muted-foreground text-center">
-                    Current State: <span className="font-bold text-white">{contestState}</span>
+                    Current State: <span className="font-bold text-foreground">{contestState}</span>
                     {contestState === "EDITING" && <span className="block text-xs mt-1 text-amber-500">You can edit the contest graph. The graph is not available for participants, regardless of the start time.</span>}
                     {contestState === "RUNNING" && <span className="block text-xs mt-1 text-amber-500">The contest is in running mode. The graph will be available for participants after the start time.</span>}
                     {contestState === "FINISHED" && <span className="block text-xs mt-1 text-amber-500">Contest has finished. The graph is not available for participants.</span>}

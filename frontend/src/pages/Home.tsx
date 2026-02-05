@@ -37,7 +37,7 @@ const Home: React.FC = () => {
 
                 {/* Header */}
                 <div className="text-center space-y-2">
-                    <h1 className="text-4xl font-bold tracking-tight text-white mb-2">
+                    <h1 className="text-4xl font-bold tracking-tight text-foreground mb-2">
                         Graphway
                     </h1>
                     <p className="text-muted-foreground">
@@ -83,7 +83,7 @@ const Home: React.FC = () => {
                                 className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors min-w-[80px] flex justify-center items-center"
                             >
                                 {loading ? (
-                                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                    <div className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
                                 ) : (
                                     'Enter'
                                 )}
@@ -99,7 +99,7 @@ const Home: React.FC = () => {
                     {/* Leaderboard Option */}
                     <button
                         onClick={() => navigate('/leaderboard')}
-                        className="group relative overflow-hidden rounded-xl glass p-6 text-left transition-all hover:bg-white/5 hover:shadow-lg hover:shadow-primary/10"
+                        className="group relative overflow-hidden rounded-xl glass p-6 text-left transition-all hover:bg-muted hover:shadow-lg hover:shadow-primary/10"
                     >
                         <div className="flex items-center gap-4">
                             <div className="p-3 rounded-lg bg-yellow-500/10 text-yellow-500 group-hover:scale-110 transition-transform">

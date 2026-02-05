@@ -55,7 +55,7 @@ const BackgroundGraph = () => {
                 // Draw particle
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.1)'; // White/grey with low opacity
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; // Dark with low opacity
                 ctx.fill();
             });
 
@@ -73,7 +73,7 @@ const BackgroundGraph = () => {
                         ctx.lineTo(particles[j].x, particles[j].y);
 
                         const opacity = 1 - distance / connectionDistance;
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.1})`; // White/grey lines
+                        ctx.strokeStyle = `rgba(0, 0, 0, ${opacity * 0.1})`; // Dark lines
                         ctx.lineWidth = 1;
                         ctx.stroke();
                     }

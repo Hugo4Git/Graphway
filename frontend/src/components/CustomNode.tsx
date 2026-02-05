@@ -12,15 +12,14 @@ type CustomNodeData = {
 const CustomNode = memo(({ data, selected }: NodeProps<Node<CustomNodeData>>) => {
     return (
         <div className={clsx(
-            "w-32 h-32 flex flex-col items-center justify-center text-center px-1 shadow-lg rounded-full transition-all border",
+            "w-32 h-32 flex flex-col items-center justify-center text-center px-1 shadow-lg rounded-full transition-all border-2",
             // Selection state
             selected && "ring-2 ring-primary ring-offset-2 ring-offset-background",
             // Status based styling
-            // Status based styling
-            data.state === 'solved' ? "bg-green-600 border-green-600 text-white" :
-                data.state === 'available' ? "bg-card border-green-500 text-white" :
-                    data.state === 'locked' ? "bg-card border-border text-muted-foreground" :
-                        "bg-card border-border hover:border-primary/50" // Default (Admin/Normal)
+            data.state === 'solved' ? "bg-green-600 border-green-700 text-white" :
+                data.state === 'available' ? "bg-card border-foreground text-foreground" :
+                    data.state === 'locked' ? "bg-card border-stone-300 text-stone-300" :
+                        "bg-card border-foreground text-foreground hover:border-black" // Default (Admin/Normal)
         )}>
             {/* Handles for smart connection feel (invisible) */}
             <Handle type="source" position={Position.Top} className="opacity-0 w-1 h-1 !bg-transparent pointer-events-none" isConnectable={false} />
@@ -31,15 +30,15 @@ const CustomNode = memo(({ data, selected }: NodeProps<Node<CustomNodeData>>) =>
                     {data.rating > 0 && ( /* If locked, rating might be hidden or passed as string '???' which fails this check */
                         <div className={clsx(
                             "flex items-center text-xs font-bold mx-auto",
-                            data.state === 'locked' ? "text-muted-foreground" : "text-yellow-500"
+                            data.state === 'locked' ? "text-inherit" : "text-yellow-500"
                         )}>
-                            <Star size={10} className={clsx("mr-1", data.state === 'locked' ? "fill-muted-foreground" : "fill-yellow-500")} />
+                            <Star size={10} className={clsx("mr-1", data.state === 'locked' ? "fill-current" : "fill-yellow-500")} />
                             {data.rating}
                         </div>
                     )}
                 </div>
 
-                <div className={clsx("font-bold text-3xl truncate", data.state === 'locked' && "text-muted-foreground")} title={data.state === 'locked' ? "Locked" : data.pid}>
+                <div className={clsx("font-bold text-3xl truncate")} title={data.state === 'locked' ? "Locked" : data.pid}>
                     {data.state === 'locked' ? "?" :
                         data.state === 'solved' ? "AC" :
                             data.state === 'available' ? "Solve" :
@@ -50,7 +49,7 @@ const CustomNode = memo(({ data, selected }: NodeProps<Node<CustomNodeData>>) =>
 
             {/* Handle required for edges to render */}
             <Handle type="target" position={Position.Top} className="opacity-0 w-1 h-1 !bg-transparent pointer-events-none" isConnectable={false} />
-        </div>
+        </div >
     );
 });
 
