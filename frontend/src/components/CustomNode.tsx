@@ -17,8 +17,8 @@ const CustomNode = memo(({ data, selected }: NodeProps<Node<CustomNodeData>>) =>
             selected && "ring-2 ring-primary ring-offset-2 ring-offset-background",
             // Status based styling
             data.state === 'solved' ? "bg-green-600 border-green-700 text-white" :
-                data.state === 'available' ? "bg-card border-foreground text-foreground" :
-                    data.state === 'locked' ? "bg-card border-stone-300 text-stone-300" :
+                data.state === 'available' ? "bg-card border-foreground text-foreground ring-2 ring-offset-2 ring-green-600" :
+                    data.state === 'locked' ? "bg-card border-stone-300 text-foreground border-dashed" :
                         "bg-card border-foreground text-foreground hover:border-black" // Default (Admin/Normal)
         )}>
             {/* Handles for smart connection feel (invisible) */}
